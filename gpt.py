@@ -1,11 +1,39 @@
+"""Open AI API"""
+import time
 from openai import OpenAI
-client = OpenAI()
-response = input("[*]: ")
-completion = client.chat.completions.create(
-  model="gpt-3.5-turbo",
-  messages=[
-    {"role": "system", "content": "You are the incredibly helpful cool robot chaz. Chaz, for short. Your purpose is to recommend songs based upon user inputs"},
-    {"role": "user", "content": response}
-  ]
+
+# ~ Docs ~
+# https://cookbook.openai.com/examples/assistants_api_overview_python
+# https://platform.openai.com/docs/assistants/how-it-works/managing-threads-and-messages
+
+def wait_on_run(run, thread):
+  while run.status == "queued" or run.status == "in_progress":
+      run = client.beta.threads.runs.retrieve(
+          thread_id=thread.id,
+          run_id=run.id,
+      )
+      time.sleep(0.5)
+  return run
+
+client = OpenAI(
+  organization='org-1VoooiSLTr711Aax6i6A5nUT',
 )
-print(completion.choices[0].message)
+
+thread = client.beta.threads.create()
+PROMPT = input("[*]: ")
+ASSISTANT_ID = "asst_Z8EJORrugfSAMUgxKXWNAaXw"
+
+message = client.beta.threads.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content=PROMPT,
+)
+
+run = client.beta.threads.runs.create(
+    thread_id=thread.id,
+    assistant_id=ASSISTANT_ID,
+)
+
+run = wait_on_run(run, thread)
+messages = client.beta.threads.messages.list(thread_id=thread.id)
+print(messages.data[0].content[0].text.value)
