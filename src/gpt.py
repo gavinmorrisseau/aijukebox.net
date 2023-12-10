@@ -1,5 +1,6 @@
-"""Open AI API"""
 import time
+import json
+import sys
 from openai import OpenAI
 
 # ~ Docs ~
@@ -36,4 +37,15 @@ run = client.beta.threads.runs.create(
 
 run = wait_on_run(run, thread)
 messages = client.beta.threads.messages.list(thread_id=thread.id)
-print(messages.data[0].content[0].text.value)
+message_object = messages.data[0].content[0].text.value
+
+try:
+    message_parsed = json.loads(message_object)
+except json.decoder.JSONDecodeError:
+    print(f'FAILED: \n{message}')
+    sys.exit()
+
+for count in range(1,6):
+    artist = str(message_parsed[str(count)]['artist'])
+    track = str(message_parsed[str(count)]['track'])
+    print(f'{track} by {artist}')
