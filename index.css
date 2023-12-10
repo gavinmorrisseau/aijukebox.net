@@ -1,5 +1,17 @@
 /* FILEPATH: /workspaces/AI-music-recommendation/web/index.css */
 
+
+/* Enable noselect for major browsers */
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
+  }
+
 /* Reset default browser styles */
 html, body {
     margin: 0;
@@ -46,7 +58,7 @@ textarea {
     border-radius: 4px;
 }
 
-.header * {
+#header * {
     background-color: #fff;
     color: #141214;
     text-align: center;
@@ -105,3 +117,4 @@ input::placeholder {
     height: 6rem;
     top: 1.6rem;
 }
+
