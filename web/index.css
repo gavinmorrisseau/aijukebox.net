@@ -34,19 +34,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Add styles for buttons */
-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
 /* Add styles for forms */
 form {
     margin-bottom: 20px;
@@ -59,5 +46,62 @@ textarea {
     border-radius: 4px;
 }
 
-/* Add custom styles for your specific project */
-/* ... */
+.header * {
+    background-color: #fff;
+    color: #141214;
+    text-align: center;
+}
+
+#headertext {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-top: 16rem;
+    color: #555555;
+}
+
+#subtext {
+    position: relative;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 4rem;
+    color: #555555;
+}
+
+.chat * {
+    text-align: center;
+}
+
+input {
+    width: 20%;
+    height: 1.7rem;
+    text-align: left;
+}
+
+input::placeholder {
+    text-align: center;    
+
+}
+
+.button {
+    padding: 10px 20px;
+    text-align: left;
+    color: #fff;
+    background-color: #515151;
+    border: none;
+    border-radius: 4px;
+}
+
+.button:hover {
+    background-color:#000;
+    color: #fff
+}
+
+#headerlogo {
+    position: relative;
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+    width: 6rem;
+    height: 6rem;
+    top: 1.6rem;
+}
