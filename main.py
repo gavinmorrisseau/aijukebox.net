@@ -21,7 +21,7 @@ client = OpenAI(
 )
 
 thread = client.beta.threads.create()
-PROMPT = input("[*]: ")
+PROMPT = input("[*]: ").lower().strip() or "Give me a list of 5 random great songs"
 ASSISTANT_ID = "asst_Z8EJORrugfSAMUgxKXWNAaXw"
 
 message = client.beta.threads.messages.create(
