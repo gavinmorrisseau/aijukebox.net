@@ -27,7 +27,7 @@ body {
 
 /* Add styles for the header */
 header {
-    background-color: #333;
+    background-color: #555555;
     color: #FAF9F6;
     padding: 20px;
 }
@@ -50,13 +50,6 @@ a:hover {
 /* Add styles for forms */
 form {
     margin-bottom: 20px;
-}
-
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #FAF9F6;
-    border-radius: 4px;
 }
 
 #header * {
@@ -86,7 +79,7 @@ textarea {
     position: relative;
     font-size: 1rem;
     font-weight: 400;
-    margin-bottom: 15rem;
+    margin-bottom: 6rem;
     color: #555555;
 }
 
@@ -100,11 +93,12 @@ input {
     text-align: left;
     border-radius: 4px;
     background-color: #555555;
-    color: #FAF9F6
+    color:#FAF9F6
 }
 
 input::placeholder {
     text-align: center;
+    background-color: #555555;
     color: #FAF9F6;
 }
 
@@ -112,7 +106,7 @@ input::placeholder {
     padding: 10px 20px;
     text-align: left;
     color: #FAF9F6;
-    background-color: #515151;
+    background-color: #555555;
 }
 
 .button:hover {
