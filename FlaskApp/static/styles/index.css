@@ -22,12 +22,13 @@ html, body {
 body {
     font-size: 16px;
     font-family: Arial, sans-serif;
+    background-color: #FAF9F6;
 }
 
 /* Add styles for the header */
 header {
     background-color: #333;
-    color: #fff;
+    color: #FAF9F6;
     padding: 20px;
 }
 
@@ -54,12 +55,12 @@ form {
 textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #FAF9F6;
     border-radius: 4px;
 }
 
 #header * {
-    background-color: #fff;
+    background-color: #FAF9F6;
     color: #141214;
     text-align: center;
 }
@@ -88,6 +89,7 @@ input {
     height: 2.05rem;
     text-align: left;
     border-radius: 4px;
+    background-color: #FAF9F6;
 }
 
 input::placeholder {
@@ -97,7 +99,7 @@ input::placeholder {
 .button {
     padding: 10px 20px;
     text-align: left;
-    color: #fff;
+    color: #FAF9F6;
     background-color: #515151;
 }
 
