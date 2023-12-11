@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../static/assets/images/favicon.svg">
+    <link rel="icon" type="image/png" href="../static/assets/images/favicon.png">
+    <!-- JQuery (add to source later) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Theming -->
+    <meta name="theme-color" content="#fdf7f2">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title and Stylesheet -->
+    <title>aijukebox.net</title>
+    <link rel="stylesheet" href="/static/styles/index.css" />
+</head>
+<body>
+    <div class="noselect" id="header">
+        <h1 id="headertext">hey, boss<img id="headerlogo" src="../static/assets/images/OriginalLogoTransparent.png" alt="logo"></h1>
+        <p id="subtext">what's the mood today?</p>
+    </div>
+    <div class="chatbox">
+        {% if result%}
+        <p>Result: {{ result }}</p>   
+        {% endif %} 
+
+        <div class="chatbox__input">
+            <form action="/result" method="POST">
+                <input type="text" name="result" id="result" placeholder="type a message ...">
+                <button class="button">send</button>
+            </form>
+        </div>
+    </div>
+    <script src="static/js/index.js"></script>
+</body>
+</html>
