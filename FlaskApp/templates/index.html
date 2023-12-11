@@ -20,11 +20,11 @@
     <div class="chatbox">
         <div class="chatbox__input">
             <form action="/result" method="POST">
-                <input type="text" name="result" id="result" placeholder="type a message ...">
+                <input type="text" name="question" id="question" placeholder="type a message ...">
                 <button class="button">send</button>
             </form>
-            {% if result%}
-            <p>{{ result }}</p>   
+            {% if question%}
+            <p>{{question}}</p>   
             {% endif %} 
         </div>
     </div>

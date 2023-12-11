@@ -8,8 +8,8 @@ def index():
 @app.route("/result", methods=["POST", "GET"])
 def result():
     output = request.form.to_dict()
-    result = output["result"]
-    return render_template("index.html", result = result)
+    question = output["question"]
+    return render_template("index.html", question=question)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
