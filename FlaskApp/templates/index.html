@@ -25,8 +25,9 @@
                     <input type="text" name="question" id="question" placeholder="type a message ...">
                     <button class="button">send</button>
                 </form>
-                {% if question%}
-                <p>{{question}}</p>   
+                {% if message_parsed not in [""] %}
+                <p> {{ question }} </p>
+                <p> {{ message_parsed }} </p>
                 {% endif %} 
             </div>
         </div>
