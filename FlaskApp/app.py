@@ -8,10 +8,16 @@ import traceback
 
 app = Flask(__name__)
 
+placeholder = "type anything here ..."
+
+''' RETURNS CHAT GPT'S TO A QUESTION IN JSON FORMAT'''
 def run_GPT(question):
+    global placeholder
     print("RUNNING GPT")
     print("QUESTION: " + question)
     if(question not in ["",None,'']):
+        placeholder = question
+
         client = OpenAI(organization='org-1VoooiSLTr711Aax6i6A5nUT',)
         thread = client.beta.threads.create()
         assistant_id = "asst_Z8EJORrugfSAMUgxKXWNAaXw"
@@ -27,12 +33,14 @@ def run_GPT(question):
         )
         run = wait_on_run(run, client, thread)
         messages = client.beta.threads.messages.list(thread_id=thread.id)
-        message_object = messages.data[0].content[0].text.value
+        message_string = messages.data[0].content[0].text.value
         message_parsed = "FAILED"
         try:
-            message_parsed = json.loads(message_object)
+            message_parsed = json.loads(message_string)
         except json.decoder.JSONDecodeError:
             print(f'FAILED: \n{message}')
+        
+        print("ANSWER: " + str(message_parsed))
         print("COMPLETED GPT")
         return(message_parsed)
     print("CANCELLED GPT")
@@ -44,7 +52,7 @@ def wait_on_run(run, client, thread):
             thread_id=thread.id,
             run_id=run.id,
         )
-        time.sleep(0.25)
+        time.sleep(0.1)
     return run
 
 @app.route('/', methods = ['POST','GET'])

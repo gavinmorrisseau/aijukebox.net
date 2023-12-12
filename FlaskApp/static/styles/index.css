@@ -71,8 +71,7 @@ a:hover {
 #headerlogo {
     position: relative;
     display: inline;
-    margin-left: auto;
-    margin-right: auto;
+    margin:auto;
     width: 6rem;
     height: 6rem;
     top: 1.6rem;
@@ -80,7 +79,7 @@ a:hover {
 
 #subtext {
     position: relative;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 400;
     margin-bottom: 5%;
     color: #555555;
@@ -92,12 +91,15 @@ a:hover {
 }
 
 #chatbox__response {
+    position: center;
     font-family: monospace;
-    width: 200px;
-    height: 100px;
-    border: 1px solid black;
-    padding: 10px;
-    margin: 10px;
+    width: 33%;
+    height: 10%;
+    /* border: 1px solid #555555; */
+    margin: auto;
+    margin-top: 2rem;
+    padding-bottom: 10px;
+    display: block;
 }
 
 input {

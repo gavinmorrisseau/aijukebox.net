@@ -17,16 +17,17 @@
     <div id="body">
         <div class="noselect" id="header">
             <h1 id="headertext">hey, boss<img id="headerlogo" src="../static/assets/images/OriginalLogoTransparent.png" alt="logo"></h1>
-            <p id="subtext">what's the mood today?</p>
+            <p id="subtext">what kind of music today?</p>
         </div>
         <div class="chatbox">
             <div class="chatbox__input">
-                <form action="/" method="POST">
-                    <input type="text" name="question" id="question" placeholder="type a message ...">
+                <form action="/" method="POST" autocomplete="off">
+                    <input type="text" name="question" id="question" placeholder='{{placeholder}}''>
                     <button class="button">send</button>
                 </form>
                 <div id="chatbox__response">
                     {% if message_parsed not in ["",undefined] %}
+                    <p> Prompt: {{ question }}</p>
                     <p> {{ message_parsed.get('1').get('track') or "NONE" }} by {{ message_parsed.get('1').get('artist') or "NONE" }} </p>
                     <p> {{ message_parsed.get('2').get('track') or "NONE" }} by {{ message_parsed.get('2').get('artist') or "NONE" }} </p>
                     <p> {{ message_parsed.get('3').get('track') or "NONE" }} by {{ message_parsed.get('3').get('artist') or "NONE" }} </p>
@@ -36,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <script src="static/js/index.js"></script>
+        <script src="../static/js/index.js"></script>
     </div>
     <div class="noselect" id="footer">
         <pre>© 2023 aijukebox.net   </pre>
