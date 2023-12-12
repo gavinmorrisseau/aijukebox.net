@@ -1,14 +1,17 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from openai import OpenAI
 import time
 import json
 import sys
 
+import traceback
+
 app = Flask(__name__)
 
-def run_GPT(question=""):
-    if(question not in [""]):
-        question = str(request.args.get('question'))
+def run_GPT(question):
+    print("RUNNING GPT")
+    print("QUESTION: " + question)
+    if(question not in ["",None,'']):
         client = OpenAI(organization='org-1VoooiSLTr711Aax6i6A5nUT',)
         thread = client.beta.threads.create()
         assistant_id = "asst_Z8EJORrugfSAMUgxKXWNAaXw"
@@ -25,35 +28,39 @@ def run_GPT(question=""):
         run = wait_on_run(run, client, thread)
         messages = client.beta.threads.messages.list(thread_id=thread.id)
         message_object = messages.data[0].content[0].text.value
+        message_parsed = "FAILED"
         try:
-            message_parsed = "FAILED"
             message_parsed = json.loads(message_object)
         except json.decoder.JSONDecodeError:
             print(f'FAILED: \n{message}')
+        print("COMPLETED GPT")
         return(message_parsed)
+    print("CANCELLED GPT")
     return ""
 
 def wait_on_run(run, client, thread):
-    run = request.args.get('run')
-    client = request.args.get('client')
-    thread = request.args.get('thread')
     while run.status in ["queued","in_progress"]:
         run = client.beta.threads.runs.retrieve(
             thread_id=thread.id,
             run_id=run.id,
         )
-        time.sleep(0.5)
+        time.sleep(0.25)
     return run
 
-@app.route("/")
+@app.route('/', methods = ['POST','GET'])
 def index():
-    return render_template("index.html")
-
-@app.route("/result", methods=["POST", "GET"])
-def result():
-    global message_parsed
-    question = request.form.to_dict()
-    message_parsed = run_GPT(question)
+    # if request.method == 'GET':
+    #     pass
+    question = ''
+    message_parsed = ''
+    if request.method in ['POST','GET'] and request.form.get('question') != '':
+        question = request.form.to_dict().get('question','')
+        #print("BEHIND QUESTION: " + str(question))
+        if(question not in ["",None]):
+            message_parsed = run_GPT(question)
+        else:
+            message_parsed = ''
+        #print("BEHIND MSG PARSED: " + str(message_parsed))
     return render_template("index.html", question=question, message_parsed=message_parsed)
 
 @app.errorhandler(404)

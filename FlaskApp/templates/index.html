@@ -25,10 +25,15 @@
                     <input type="text" name="question" id="question" placeholder="type a message ...">
                     <button class="button">send</button>
                 </form>
-                {% if message_parsed not in [""] %}
-                <p> {{ question }} </p>
-                <p> {{ message_parsed }} </p>
-                {% endif %} 
+                <div id="chatbox__response">
+                    {% if message_parsed not in ["",undefined] %}
+                    <p> {{ message_parsed.get('1').get('track') or "NONE" }} by {{ message_parsed.get('1').get('artist') or "NONE" }} </p>
+                    <p> {{ message_parsed.get('2').get('track') or "NONE" }} by {{ message_parsed.get('2').get('artist') or "NONE" }} </p>
+                    <p> {{ message_parsed.get('3').get('track') or "NONE" }} by {{ message_parsed.get('3').get('artist') or "NONE" }} </p>
+                    <p> {{ message_parsed.get('4').get('track') or "NONE" }} by {{ message_parsed.get('4').get('artist') or "NONE" }} </p>
+                    <p> {{ message_parsed.get('5').get('track') or "NONE" }} by {{ message_parsed.get('5').get('artist') or "NONE" }} </p>
+                    {% endif %} 
+                </div>
             </div>
         </div>
         <script src="static/js/index.js"></script>
