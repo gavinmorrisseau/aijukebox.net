@@ -25,20 +25,21 @@
                     <input type="text" name="question" id="question" placeholder = "type anything here ...">
                     <button class="button">send</button>
                 </form>
+                {% if answer not in [placeholder_response] %}
                 <div id="chatbox__response">
-                    {% if message_parsed not in ["",undefined] %}
+                    <!-- > <p> DEBUG Answer: {{ answer }}</p> <-->
                     <p> Prompt: {{ question }}</p>
-                    <br>
-                    <p> {{ message_parsed.get('1').get('track') }} by {{ message_parsed.get('1').get('artist') }} </p>
-                    <p> {{ message_parsed.get('2').get('track') }} by {{ message_parsed.get('2').get('artist') }} </p>
-                    <p> {{ message_parsed.get('3').get('track') }} by {{ message_parsed.get('3').get('artist') }} </p>
-                    <p> {{ message_parsed.get('4').get('track') }} by {{ message_parsed.get('4').get('artist') }} </p>
-                    <p> {{ message_parsed.get('5').get('track') }} by {{ message_parsed.get('5').get('artist') }} </p>
-                    {% endif %} 
+                    <br class="noselect">
+                    <p> {{ answer.get('1').get('track') }} by {{ answer.get('1').get('artist') }} </p>
+                    <p> {{ answer.get('2').get('track') }} by {{ answer.get('2').get('artist') }} </p>
+                    <p> {{ answer.get('3').get('track') }} by {{ answer.get('3').get('artist') }} </p>
+                    <p> {{ answer.get('4').get('track') }} by {{ answer.get('4').get('artist') }} </p>
+                    <p> {{ answer.get('5').get('track') }} by {{ answer.get('5').get('artist') }} </p>
                 </div>
+                {% endif %}
             </div>
         </div>
-        <script src="../static/js/index.js"></script>
+        <!-- (Unused) <script src="../static/js/index.js"></script> -->
     </div>
     <div class="noselect" id="footer">
         <pre>© 2023 aijukebox.net   </pre>
