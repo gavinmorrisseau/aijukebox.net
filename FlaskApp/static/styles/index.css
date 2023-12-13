@@ -93,11 +93,11 @@ a:hover {
 #chatbox__response {
     position: center;
     font-family: monospace;
-    width: 33%;
+    width: 100%;
     height: 10%;
-    /* border: 1px solid #555555; */
+    border: 1px solid #555555;
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 3rem;
     padding-bottom: 10px;
     display: block;
 }

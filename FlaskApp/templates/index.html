@@ -28,7 +28,12 @@
                 <div id="chatbox__response">
                     {% if message_parsed not in ["",undefined] %}
                     <p> Prompt: {{ question }}</p>
+                    <br>
+                    <p> {{ message_parsed.get('1').get('track') }} by {{ message_parsed.get('1').get('artist') }} </p>
+                    <p> {{ message_parsed.get('2').get('track') }} by {{ message_parsed.get('2').get('artist') }} </p>
                     <p> {{ message_parsed.get('3').get('track') }} by {{ message_parsed.get('3').get('artist') }} </p>
+                    <p> {{ message_parsed.get('4').get('track') }} by {{ message_parsed.get('4').get('artist') }} </p>
+                    <p> {{ message_parsed.get('5').get('track') }} by {{ message_parsed.get('5').get('artist') }} </p>
                     {% endif %} 
                 </div>
             </div>
