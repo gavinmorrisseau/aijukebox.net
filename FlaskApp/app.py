@@ -4,6 +4,12 @@ import traceback
 from flask import Flask, render_template, request
 from openai import OpenAI
 
+# OpenAI API Setup
+client = OpenAI(organization='org-1VoooiSLTr711Aax6i6A5nUT',)
+thread = client.beta.threads.create()
+assistant_id = "asst_Z8EJORrugfSAMUgxKXWNAaXw"
+
+# JSON Placeholder Response
 placeholder_response = {'1': {'artist': '', 'track': ''},
                         '2': {'artist': '', 'track': ''},
                         '3': {'artist': '', 'track': ''},
@@ -19,30 +25,23 @@ def run_gpt(question):
     print("RUNNING GPT")
     print("QUESTION: " + question)
 
-    # Setup Run
-    client = OpenAI(organization='org-1VoooiSLTr711Aax6i6A5nUT',)
-    thread = client.beta.threads.create()
-    assistant_id = "asst_Z8EJORrugfSAMUgxKXWNAaXw"
-    run = client.beta.threads.runs.create(thread_id=thread.id,assistant_id=assistant_id,)
-
     # Synchronous Run
+    run = client.beta.threads.runs.create(thread_id=thread.id,assistant_id=assistant_id,)
     run = wait_on_run(run, client, thread)
 
     # Parse Response
-    messages = client.beta.threads.messages.list(thread_id=thread.id)
-    message_string = messages.data[0].content[0].text.value
-    print(message_string)
+    latest_message = client.beta.threads.messages.list(thread_id=thread.id, order="asc")
+    print(latest_message) # DEBUG
+    message_string = latest_message.data[0].content[0].text.value
 
     # Return Response
     try:
         message_parsed = json.loads(message_string)
         print("ANSWER: " + str(message_parsed)) # DEBUG
-        print("COMPLETED GPT") # DEBUG
-        return(message_parsed)
+        return message_parsed
     except json.decoder.JSONDecodeError:
         print("FAILED! placeholder_response used") # DEBUG
-        return(placeholder_response)
-
+        return placeholder_response
 
 def wait_on_run(run, client, thread):
     ''' Syncronous Run Helper Function ''' 
@@ -51,28 +50,29 @@ def wait_on_run(run, client, thread):
             thread_id=thread.id,
             run_id=run.id,
         )
-        time.sleep(0.1)
+        time.sleep(0.2)
     return run
 
 @app.route('/', methods = ['POST','GET'])
 def index():
-    # Definition
+    ''' /index Route'''
+    # Definitions
     question = ''
-    message_parsed = ''
+    answer = ''
 
-    # Run GPT if conditions met
-    if request.method in ['POST'] and request.form.get('question') != '':
+    # Run GPT if conditions are met
+    if request.method in ['POST'] and request.form.get('question') not in '':
         question = request.form.to_dict().get('question')
-        message_parsed = run_gpt(question)
+        answer = run_gpt(question)
     else:
-        message_parsed = placeholder_response
+        answer = placeholder_response
     
-    #Render Template
-    return render_template("index.html", question=question, message_parsed=message_parsed)
+    #Render index.html
+    return render_template("index.html", question=question, answer=answer, placeholder_response=placeholder_response)
 
 @app.errorhandler(404)
 def page_not_found(error):
-    #Render Template
+    ''' 404 Error Handler '''
     return 'This page does not exist', 404
 
 if __name__ == "__main__":
