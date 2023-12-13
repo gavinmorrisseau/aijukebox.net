@@ -16,10 +16,10 @@ def wait_on_run(run, thread):
       time.sleep(0.5)
   return run
 
+
 client = OpenAI(
   organization='org-1VoooiSLTr711Aax6i6A5nUT',
 )
-
 thread = client.beta.threads.create()
 PROMPT = input("[*]: ")
 ASSISTANT_ID = "asst_Z8EJORrugfSAMUgxKXWNAaXw"
