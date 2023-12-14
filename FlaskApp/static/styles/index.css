@@ -21,6 +21,13 @@ html {
     background-color: #FAF9 F6   ;
 }
 
+/* 
+#loading{
+    position:fixed;
+    top:50%;
+    left:50%;
+} */
+
 /* Add styles for the header */
 #header {
     text-align: center;
@@ -100,7 +107,8 @@ a:hover {
 
 input {
     width: 27%;
-    height: 2.05rem;
+    height: 2.25rem;
+    font-size: 14px;
     text-align: left;
     border-radius: 4px;
     color:#FAF9F6;
@@ -108,6 +116,7 @@ input {
 }
 
 input::placeholder {
+    font-size: 14px;
     text-align: center;
     color: #FAF9F6;
     background-color: #555555;
@@ -115,9 +124,11 @@ input::placeholder {
 
 .button {
     padding: 10px 20px;
+    font-size: 14px;
     text-align: left;
     color: #FAF9F6;
     background-color: #555555;
+    border-radius: 4px;
 }
 
 .button:hover {
