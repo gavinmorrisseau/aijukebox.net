@@ -32,8 +32,8 @@ html {
 #body {
     font-size: 16px;
     font-family: Arial, sans-serif;
-    padding:10px;
-    padding-bottom:60px;   /* Height of the footer */
+    padding: 10px;
+    padding-bottom: 60px;   /* Height of the footer */
 }
 
 #footer {
@@ -41,15 +41,14 @@ html {
     color: #555555;
     background-color: #FAF9F6;
     text-align: right;
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:60px;   /* Height of the footer */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;   /* Height of the footer */
 }
 
 /* Add styles for links */
 a {
-    color: #007bff;
     text-decoration: none;
 }
 

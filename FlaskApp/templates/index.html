@@ -16,17 +16,17 @@
     </div>
     <div id="body">
         <div class="noselect" id="header">
-            <h1 id="headertext">hey, boss<img id="headerlogo" src="../static/assets/images/OriginalLogoTransparent.png" alt="logo"></h1>
-            <p id="subtext">what kind of music today?</p>
+            <h1 id="headertext">hey, boss!  <img id="headerlogo" src="../static/assets/images/head-on-logo-transparent.png" alt="logo"></h1>
+            <p id="subtext">what music interests you today?</p>
         </div>
         <div class="chatbox">
             <div class="chatbox__input">
                 <form action="/" method="POST" autocomplete="off">
                     <input type="text" name="question" id="question" placeholder = "type anything here ...">
-                    <button class="button">send</button>
+                    <button class="button">search!</button>
                 </form>
-                {% if answer not in [placeholder_response] %}
                 <div id="chatbox__response">
+                    {% if answer not in [placeholder_response] %}
                     <!-- > <p> DEBUG Answer: {{ answer }}</p> <-->
                     <p> Prompt: {{ question }}</p>
                     <br class="noselect">
@@ -35,8 +35,8 @@
                     <p> {{ answer.get('3').get('track') }} by {{ answer.get('3').get('artist') }} </p>
                     <p> {{ answer.get('4').get('track') }} by {{ answer.get('4').get('artist') }} </p>
                     <p> {{ answer.get('5').get('track') }} by {{ answer.get('5').get('artist') }} </p>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
         </div>
         <!-- (Unused) <script src="../static/js/index.js"></script> -->
