@@ -25,21 +25,25 @@ def run_gpt(question):
     print("RUNNING GPT")
     print("QUESTION: " + question)
 
-    # Synchronous Run
+    # Create Message Object
+    message = client.beta.threads.messages.create(thread_id=thread.id,role="user",content=question,)
+
+    # Begin Synchronous Run 
     run = client.beta.threads.runs.create(thread_id=thread.id,assistant_id=assistant_id,)
     run = wait_on_run(run, client, thread)
 
     # Parse Response
-    latest_message = client.beta.threads.messages.list(thread_id=thread.id, order="asc")
+    latest_message = client.beta.threads.messages.list(thread_id=thread.id,)
     print(latest_message) # DEBUG
     message_string = latest_message.data[0].content[0].text.value
+    print("message_string: " + message_string) #DEBUG
 
     # Return Response
     try:
         message_parsed = json.loads(message_string)
         print("ANSWER: " + str(message_parsed)) # DEBUG
         return message_parsed
-    except json.decoder.JSONDecodeError:
+    except ValueError: #includes json.decoder.JSONDecodeError
         print("FAILED! placeholder_response used") # DEBUG
         return placeholder_response
 
