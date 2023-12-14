@@ -33,9 +33,9 @@ def run_gpt(question):
     run = wait_on_run(run, client, thread)
 
     # Parse Response
-    latest_message = client.beta.threads.messages.list(thread_id=thread.id,)
-    print(latest_message) # DEBUG
-    message_string = latest_message.data[0].content[0].text.value
+    latest_message_object = client.beta.threads.messages.list(thread_id=thread.id,)
+    print(latest_message_object) # DEBUG
+    message_string = latest_message_object.data[0].content[0].text.value
     print("message_string: " + message_string) #DEBUG
 
     # Return Response
