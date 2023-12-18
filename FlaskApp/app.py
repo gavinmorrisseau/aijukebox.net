@@ -30,12 +30,8 @@ def generateSuggestion():
 
     return f'{random_sentence} {random_artist}'.lower()
 
-suggestion = generateSuggestion()
-
-app = Flask(__name__)
-
 def run_gpt(question):
-    ''' Synchronous Run for GPT4 Assistant Response for Question '''
+    ''' Synchronous Run for GPT-4 Assistant Response with Question '''
 
     # Debug
     print("RUNNING GPT")
@@ -50,9 +46,10 @@ def run_gpt(question):
 
     # Parse Response
     latest_message_object = client.beta.threads.messages.list(thread_id=thread.id,)
-    print(latest_message_object) # DEBUG
     message_string = latest_message_object.data[0].content[0].text.value
-    print("message_string: " + message_string) #DEBUG
+
+    #DEBUG print(latest_message_object)
+    #DEBUG print("message_string: " + message_string)
 
     # Return Response
     try:
@@ -65,7 +62,7 @@ def run_gpt(question):
 
 def wait_on_run(run, client, thread):
     ''' Syncronous Run Helper Function ''' 
-    while run.status in ["queued","in_progress"]:
+    while run.status in ['queued', 'in_progress']:
         run = client.beta.threads.runs.retrieve(
             thread_id=thread.id,
             run_id=run.id,
@@ -73,15 +70,21 @@ def wait_on_run(run, client, thread):
         time.sleep(0.2)
     return run
 
+# Generate First Suggestion
+suggestion = generateSuggestion()
+
+# Create Flask Obj
+app = Flask(__name__)
+
 @app.route('/', methods = ['POST','GET'])
 def index():
-    global suggestion
     ''' /index Route'''
+    global suggestion
 
     # Definitions
     question = ''
     answer = placeholder_response
-    suggetion = suggestion
+    current_suggestion = suggestion
     
     if request.method in ['GET']:
         pass
@@ -89,14 +92,14 @@ def index():
     # If run_gpt conditions are met
     if request.method in ['POST']:
         if(request.form.get('question','').strip() in ''):
-            question = suggestion
+            question = current_suggestion
         else:
             question = request.form.to_dict().get('question')
 
         #run_gpt with question
         answer = run_gpt(question)
 
-        #Generate has new suggestion (old one is either used or has already been seen)
+        #Generate has new suggestion (old one is used or has already been seen)
         suggestion = generateSuggestion()
 
     #Render index.html
