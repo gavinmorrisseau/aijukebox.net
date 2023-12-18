@@ -1,6 +1,7 @@
 import time
 import json
 import traceback
+import random
 from flask import Flask, render_template, request
 from openai import OpenAI
 
@@ -15,6 +16,21 @@ placeholder_response = {'1': {'artist': '', 'track': ''},
                         '3': {'artist': '', 'track': ''},
                         '4': {'artist': '', 'track': ''},
                         '5': {'artist': '', 'track': ''}}
+
+# Generate suggestion text inside of input box
+def generateSuggestion(): 
+    template_artists = ['JPEGMAFIA','Lorde','Johnny Cash','Steely Dan','The Strokes','Grimes','Fleetwood Mac',
+                        'Oasis','Freddy Gibbs','Unknown Mortal Orchestra','The Weeknd','Paul McCartney'
+                        'The Tragically Hip','Nickelback','Tame Impala','King Gizzard and the Lizard Wizard'
+                        'BROCKHAMPTON','Queen','Mac DeMarco']
+    template_sentences = ['more like','featuring','sounds like','vibe of','produced like','like','written by']
+
+    random_sentence = random.choice(template_sentences)
+    random_artist = random.choice(template_artists)
+
+    return f'{random_sentence} {random_artist}'.lower()
+
+suggestion = generateSuggestion()
 
 app = Flask(__name__)
 
@@ -59,20 +75,32 @@ def wait_on_run(run, client, thread):
 
 @app.route('/', methods = ['POST','GET'])
 def index():
+    global suggestion
     ''' /index Route'''
+
     # Definitions
     question = ''
-    answer = ''
-
-    # Run GPT if conditions are met
-    if request.method in ['POST'] and request.form.get('question') not in '':
-        question = request.form.to_dict().get('question')
-        answer = run_gpt(question)
-    else:
-        answer = placeholder_response
+    answer = placeholder_response
+    suggetion = suggestion
     
+    if request.method in ['GET']:
+        pass
+
+    # If run_gpt conditions are met
+    if request.method in ['POST']:
+        if(request.form.get('question','').strip() in ''):
+            question = suggestion
+        else:
+            question = request.form.to_dict().get('question')
+
+        #run_gpt with question
+        answer = run_gpt(question)
+
+        #Generate has new suggestion (old one is either used or has already been seen)
+        suggestion = generateSuggestion()
+
     #Render index.html
-    return render_template("index.html", question=question, answer=answer, placeholder_response=placeholder_response)
+    return render_template("index.html", question=question, answer=answer, placeholder_response=placeholder_response, suggestion=suggestion)
 
 @app.errorhandler(404)
 def page_not_found(error):
