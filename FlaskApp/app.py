@@ -1,6 +1,7 @@
 import time
 import json
 import traceback
+import random
 from flask import Flask, render_template, request
 from openai import OpenAI
 
@@ -16,10 +17,21 @@ placeholder_response = {'1': {'artist': '', 'track': ''},
                         '4': {'artist': '', 'track': ''},
                         '5': {'artist': '', 'track': ''}}
 
-app = Flask(__name__)
+# Generate suggestion text inside of input box
+def generateSuggestion(): 
+    template_artists = ['JPEGMAFIA','Lorde','Johnny Cash','Steely Dan','The Strokes','Grimes','Fleetwood Mac',
+                        'Oasis','Freddy Gibbs','Unknown Mortal Orchestra','The Weeknd','Paul McCartney'
+                        'The Tragically Hip','Nickelback','Tame Impala','King Gizzard and the Lizard Wizard'
+                        'BROCKHAMPTON','Queen','Mac DeMarco']
+    template_sentences = ['more like','featuring','sounds like','vibe of','produced like','like','written by']
+
+    random_sentence = random.choice(template_sentences)
+    random_artist = random.choice(template_artists)
+
+    return f'{random_sentence} {random_artist}'.lower()
 
 def run_gpt(question):
-    ''' Synchronous Run for GPT4 Assistant Response for Question '''
+    ''' Synchronous Run for GPT-4 Assistant Response with Question '''
 
     # Debug
     print("RUNNING GPT")
@@ -34,9 +46,10 @@ def run_gpt(question):
 
     # Parse Response
     latest_message_object = client.beta.threads.messages.list(thread_id=thread.id,)
-    print(latest_message_object) # DEBUG
     message_string = latest_message_object.data[0].content[0].text.value
-    print("message_string: " + message_string) #DEBUG
+
+    #DEBUG print(latest_message_object)
+    #DEBUG print("message_string: " + message_string)
 
     # Return Response
     try:
@@ -49,7 +62,7 @@ def run_gpt(question):
 
 def wait_on_run(run, client, thread):
     ''' Syncronous Run Helper Function ''' 
-    while run.status in ["queued","in_progress"]:
+    while run.status in ['queued', 'in_progress']:
         run = client.beta.threads.runs.retrieve(
             thread_id=thread.id,
             run_id=run.id,
@@ -57,22 +70,40 @@ def wait_on_run(run, client, thread):
         time.sleep(0.2)
     return run
 
+# Generate First Suggestion
+suggestion = generateSuggestion()
+
+# Create Flask Obj
+app = Flask(__name__)
+
 @app.route('/', methods = ['POST','GET'])
 def index():
     ''' /index Route'''
+    global suggestion
+
     # Definitions
     question = ''
-    answer = ''
-
-    # Run GPT if conditions are met
-    if request.method in ['POST'] and request.form.get('question') not in '':
-        question = request.form.to_dict().get('question')
-        answer = run_gpt(question)
-    else:
-        answer = placeholder_response
+    answer = placeholder_response
+    current_suggestion = suggestion
     
+    if request.method in ['GET']:
+        pass
+
+    # If run_gpt conditions are met
+    if request.method in ['POST']:
+        if(request.form.get('question','').strip() in ''):
+            question = current_suggestion
+        else:
+            question = request.form.to_dict().get('question')
+
+        #run_gpt with question
+        answer = run_gpt(question)
+
+        #Generate has new suggestion (old one is used or has already been seen)
+        suggestion = generateSuggestion()
+
     #Render index.html
-    return render_template("index.html", question=question, answer=answer, placeholder_response=placeholder_response)
+    return render_template("index.html", question=question, answer=answer, placeholder_response=placeholder_response, suggestion=suggestion)
 
 @app.errorhandler(404)
 def page_not_found(error):
