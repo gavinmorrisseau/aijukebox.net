@@ -1,3 +1,11 @@
+/* Add styles for links */
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
 /* Enable noselect for major browsers */
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -14,15 +22,15 @@ html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  color: #555555;
   background-color: #faf9f6;
   overflow: hidden; /* Hide scrollbars */
 }
 
-#container {
-  min-height: 100%;
-  text-align: center;
-  position: relative;
+#container * {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   background-color: #faf9f6;
 }
 
@@ -34,9 +42,25 @@ body {
 } */
 
 /* Add styles for the header */
+
+#headerlogo {
+  display: inline;
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
 #header {
-  position: relative;
-  background-color: #faf9f6;
+  margin-top: 5rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-family: Arial;
+  text-align: center;
+  margin-bottom: 4%;
+}
+
+#subtext {
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 
 /* Set a base font size and family */
@@ -44,71 +68,24 @@ body {
   text-align: center;
   position: relative;
   font-size: 16px;
-  font-family: "Times New Roman", Times, serif;
-  background-color: #faf9f6;
   height: 100%;
 }
 
-#footer {
-  text-align: right;
-  position: relative;
-  font-size: 16px;
-  color: #555555;
-  background-color: #faf9f6;
-}
-
-/* Add styles for links */
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-#headertext {
-  font-size: 2.5rem;
-  font-weight: 400;
-  margin-top: 5rem;
-  color: #555555;
-  background-color: #faf9f6;
-}
-
-#headerlogo {
-  position: relative;
-  display: inline;
-  width: 4.5rem;
-  height: 4.5rem;
-  top: 1.3rem;
-}
-
-#subtext {
-  position: relative;
-  font-size: 1.5rem;
-  font-weight: 400;
-  margin-bottom: 3.5%;
-  color: #555555;
-  background-color: #faf9f6;
-}
-
 #chatbox__response {
-  position: relative;
-  display: block;
-  width: 100%;
-  margin-top: 50px;
-  font-size: 18px;
-  font-family: "Times New Roman", Times, serif;
-  color: #555555;
+  margin-top: 70px;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
   /* border: 1px solid #555555; */
 }
 
 input {
   width: 28%;
-  height: 2.28rem;
+  height: 2.6rem;
   font-size: 14px;
-  text-align: left;
+  text-align: center;
   border-radius: 4px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: monospace;
   color: #faf9f6;
   background-color: #555555;
   outline: none;
@@ -116,9 +93,6 @@ input {
 
 input::placeholder {
   color: rbga(250, 249, 246, 0.7);
-  font-size: 14px;
-  text-align: center;
-  background-color: #555555;
 }
 
 input:focus::placeholder {
@@ -126,22 +100,25 @@ input:focus::placeholder {
 }
 
 button {
-  padding: 10px 20px;
-  height: 2.55rem;
-  font-size: 14px;
-  text-align: center;
   color: #faf9f6;
   background-color: #555555;
   border-radius: 4px;
+  height: 2.75rem;
+  font-size: 14px;
+  text-align: center;
+  font-family: monospace;
   outline: none;
 }
 
 button:hover {
-  color: #fff;
+  color: #faf9f6;
   background-color: #000;
   outline: none;
 }
 
-.spotify_embeds {
-  position: relative;
+#footer {
+  height: 2%;
+  text-align: right;
+  position:sticky;
+  font-size: 16px;
 }
