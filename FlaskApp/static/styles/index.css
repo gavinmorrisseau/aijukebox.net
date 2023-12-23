@@ -1,24 +1,37 @@
-/* Enable noselect for major browsers */
-.noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Old versions of Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome, Edge, Opera and Firefox */
-  }
-
-/* Reset default browser styles */
-html, body {
-    margin:0;
-    padding:0;
-    height:100%;
-    background-color: #FAF9F6;
+/* Add styles for links */
+a {
+  text-decoration: none;
 }
 
-html {
-    background-color: #FAF9 F6   ;
+a:hover {
+  text-decoration: underline;
+}
+/* Enable noselect for major browsers */
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+  supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* Reset default browser styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #555555;
+  background-color: #faf9f6;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+#container * {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #faf9f6;
 }
 
 /* 
@@ -29,124 +42,91 @@ html {
 } */
 
 /* Add styles for the header */
-#header {
-    text-align: center;
-    color: #FAF9F6;
-    background-color: #555555;
+
+#headerlogo {
+  display: inline;
+  width: 5.5rem;
+  height: 5.5rem;
+}
+
+#headertext {
+  text-align: center;
+  margin-top: 5rem;
+  font-weight: 700;
+  font-size: 3rem;
+  font-family: Arial;
+  margin-bottom: 30px;
+}
+
+#subtext {
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin-bottom: 50px;
 }
 
 /* Set a base font size and family */
 #body {
-    font-size: 16px;
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    padding-bottom: 60px;   /* Height of the footer */
+  text-align: center;
+  position: relative;
+  font-size: 16px;
+  height: 100%;
 }
 
-#footer {
-    font-size: 16px;
-    color: #555555;
-    background-color: #FAF9F6;
-    text-align: right;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60px;   /* Height of the footer */
-}
-
-/* Add styles for links */
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-#headertext {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-top: 8rem;
-    color: #555555;
-    background-color: #FAF9F6;
-}
-
-#headerlogo {
-    position: relative;
-    display: inline;
-    margin:auto;
-    width: 6rem;
-    height: 6rem;
-    top: 1.6rem;
-}
-
-#subtext {
-    position: relative;
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 5%;
-    color: #555555;
-    background-color: #FAF9F6;
-}
-
-.chatbox * {
-    text-align: center;
+#results {
+  font-size: 18px;
+  font-weight: 600;
 }
 
 #chatbox__response {
-    position: center;
-    font-family: monospace;
-    width: 100%;
-    height: 10%;
-    /* border: 1px solid #555555; */
-    margin: auto;
-    margin-top: 3rem;
-    padding-bottom: 10px;
-    display: block;
+  margin-top: 10px;
+  font-weight: 300;
+  font-size: 1rem;
+  text-align: center;
+  /* border: 2px solid #555555; */
+  /* border-radius: 10px; */
 }
 
 input {
-    width: 27%;
-    height: 2.25rem;
-    font-size: 14px;
-    text-align: left;
-    border-radius: 4px;
-    color:#FAF9F6;
-    background-color: #555555;
+  width: 28%;
+  height: 2.6rem;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 4px;
+  font-family: monospace;
+  color: #faf9f6;
+  background-color: #555555;
+  outline: none;
 }
 
 input::placeholder {
-    font-size: 14px;
-    text-align: center;
-    color: #FAF9F6;
-    background-color: #555555;
+  color: rbga(250, 249, 246, 0.7);
 }
 
-.button {
-    padding: 10px 20px;
-    font-size: 14px;
-    text-align: left;
-    color: #FAF9F6;
-    background-color: #555555;
-    border-radius: 4px;
+input:focus::placeholder {
+  color: transparent;
 }
 
-.button:hover {
-    color: #fff;
-    background-color:#000;
+button {
+  color: #faf9f6;
+  background-color: #555555;
+  border-radius: 4px;
+  height: 2.75rem;
+  font-size: 14px;
+  text-align: center;
+  font-family: monospace;
+  outline: none;
 }
 
-#header {
-    padding:10px;
-    background-color: #FAF9F6;
+button:hover {
+  color: #faf9f6;
+  background-color: #000;
+  outline: none;
 }
 
-#container {
-    min-height:100%;
-    position:relative;
-    background-color: #FAF9F6;
-}
-
-main {
-    background-color: #FAF9F6;
+#footer {
+  height: 2%;
+  text-align: right;
+  position:sticky;
+  font-size: 16px;
 }

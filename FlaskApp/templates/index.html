@@ -10,40 +10,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles/index.css" />
-
 </head>
-<div class="container"></div>
-    <div id="header">
+<div class="container">
+    <div class="noselect" id="header">
+        <h1 id="headertext">hey, boss!  <img id="headerlogo" src="../static/assets/images/head-on-logo-transparent.png" alt="logo"></h1>
+        <p id="subtext">what music interests you today?</p>
     </div>
     <div id="body">
         <!-- <img id="loading" alt="" src="../static/assets/images/loading.gif"/> -->
-        <div class="noselect" id="header">
-            <h1 id="headertext">hey, boss!  <img id="headerlogo" src="../static/assets/images/head-on-logo-transparent.png" alt="logo"></h1>
-            <p id="subtext">what music interests you today?</p>
-        </div>
         <div class="chatbox">
             <div class="chatbox__input">
                 <form action="/" method="POST" autocomplete="off">
                     <input type="text" name="question" id="question" placeholder = 'try: {{suggestion}}'>
-                    <button class="button">search!</button>
+                    <button>search!</button>
                 </form>
                 <div id="chatbox__response">
                     {% if answer not in [placeholder_response] %}
                     <!-- > <p> DEBUG Answer: {{ answer }}</p> <-->
-                    <p> Prompt: {{ question }}</p>
+                    <!-- <div class="show_question"> {{ question }} </div> -->
                     <br class="noselect">
-                    <p> {{ answer.get('1').get('track') }} by {{ answer.get('1').get('artist') }} </p>
-                    <p> {{ answer.get('2').get('track') }} by {{ answer.get('2').get('artist') }} </p>
-                    <p> {{ answer.get('3').get('track') }} by {{ answer.get('3').get('artist') }} </p>
-                    <p> {{ answer.get('4').get('track') }} by {{ answer.get('4').get('artist') }} </p>
-                    <p> {{ answer.get('5').get('track') }} by {{ answer.get('5').get('artist') }} </p>
+                    <p id="results">results for: {{ question }}</p>
+                    <div class="spotify_embeds">
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[0]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[1]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <br>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[2]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[3]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <br>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[4]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                     {% endif %}
+                    </div>
                 </div>
             </div>
+            <!-- <script src="../static/js/index.js"></script> -->
+            <div class="noselect" id="footer">
+                <pre>© 2023 aijukebox.net   </pre>
+            </div> 
         </div>
-        <script src="../static/js/index.js"></script>
     </div>
-    <div class="noselect" id="footer">
-        <pre>© 2023 aijukebox.net   </pre>
-    </div> 
+</div>
 </html>
