@@ -3,7 +3,7 @@
 
 # Usage (not yet available!)
 1. Fork this repository
-2. Create new branch
+2. Create a new branch
 3. Open terminal and navigate to your clones folder
 4. Add dependencies with using requirements.txt (soon)
 5. ```cd aijukebox.net/FlaskApp```
@@ -14,12 +14,12 @@
 10. (Optional) Help out the project by contributing to the repository :^)
 
 # To-Do
-1. Move to asynchronous request model
-2. Polish website design (temporarily in place now)
-4. Implement Spotify API to allow users to connect their accounts to save and preview suggestions
-5. Refine Assistant's responses
-6. Connect aijukebox.net to GitHub pages
-7. Go live and advertise!
+- Move to asynchronous request model
+- Implement Spotify API to allow users to connect their accounts to save and preview suggestions
+- Fix Spotify query requests to give accurate answers
+- Connect aijukebox.net to GitHub pages
+- Polish website design (temporarily in place now)
+- Go live and advertise!
 
 # Contact
 gavin<span>@</span>morrisseau.ca
