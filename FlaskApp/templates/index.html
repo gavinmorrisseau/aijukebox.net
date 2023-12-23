@@ -29,21 +29,15 @@
                     <!-- > <p> DEBUG Answer: {{ answer }}</p> <-->
                     <!-- <div class="show_question"> {{ question }} </div> -->
                     <br class="noselect">
-                    <p>{{ question }}</p>
+                    <p id="results">results for: {{ question }}</p>
                     <div class="spotify_embeds">
-                        <!-- <br class="noselect"> -->
-                            <!-- <p> {{ answer.get('1').get('track') }} by {{ answer.get('1').get('artist') }} </p> -->
-                            <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[0]}}?utm_source=generator" width="27%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-                            <!-- <p> {{ answer.get('2').get('track') }} by {{ answer.get('2').get('artist') }} </p> -->
-                            <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[1]}}?utm_source=generator" width="27%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[0]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[1]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                         <br>
-                            <!-- <p> {{ answer.get('3').get('track') }} by {{ answer.get('3').get('artist') }} </p> -->
-                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[2]}}?utm_source=generator" width="27%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-                            <!-- <p> {{ answer.get('4').get('track') }} by {{ answer.get('4').get('artist') }} </p> -->
-                            <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[3]}}?utm_source=generator" width="27%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[2]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[3]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                         <br>
-                            <!-- <p> {{ answer.get('5').get('track') }} by {{ answer.get('5').get('artist') }} </p> -->
-                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[4]}}?utm_source=generator" width="27%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                        <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[4]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                     {% endif %}
                     </div>
                 </div>
