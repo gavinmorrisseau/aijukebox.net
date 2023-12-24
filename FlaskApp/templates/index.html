@@ -13,7 +13,8 @@
 </head>
 <div class="container">
     <div class="noselect" id="header">
-        <h1 id="headertext">hey, boss!  <img id="headerlogo" src="../static/assets/images/head-on-logo-transparent.png" alt="logo"></h1>
+        <h1 id="header__text">hey, boss!  </h1>
+        <img id="header__logo" src="../static/assets/images/head-on-logo-transparent-AFAFAD.png" alt="logo">
         <p id="subtext">what music interests you today?</p>
     </div>
     <div id="body">
@@ -29,8 +30,8 @@
                     <!-- > <p> DEBUG Answer: {{ answer }}</p> <-->
                     <!-- <div class="show_question"> {{ question }} </div> -->
                     <br class="noselect">
-                    <p id="results">results for: {{ question }}</p>
-                    <div class="spotify_embeds">
+                    <div class="spotify__embeds">
+                        <p id="results">results for: {{ question }}</p>
                         <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[0]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                         <iframe style="border-radius:0px" src="https://open.spotify.com/embed/track/{{ids[1]}}?utm_source=generator" width="22%" height="85px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                         <br>
@@ -42,11 +43,11 @@
                     </div>
                 </div>
             </div>
-            <!-- <script src="../static/js/index.js"></script> -->
-            <div class="noselect" id="footer">
-                <pre>© 2023 aijukebox.net   </pre>
-            </div> 
-        </div>
+        </div> 
+    </div>
+    <!-- <script src="../static/js/index.js"></script> -->
+    <div class="noselect" id="footer">
+        <pre>© 2023 aijukebox.net   </pre>
     </div>
 </div>
 </html>
