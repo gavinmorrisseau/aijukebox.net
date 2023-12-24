@@ -18,11 +18,10 @@ def search_spotify(search_artist,search_track):
 
     print(f'SEARCH_SPOTIFY: Running "{search_artist}" and "{search_track}"') #DEBUG
 
-    #Formatting Inputs and Query
-    search_artist = search_artist.replace(' ','%20')
-    search_track = search_track.replace(' ','%20')
-    query = f'q=artist:{search_artist}%20track:{search_track}'
-    #query = f'q=track%3A{search_track}%2520artist%3A{search_artist}&type=track' #ex: q=track%3ABack%2520To%2520The%2520Egg%2520artist%3APaul%2520McCartney
+    # #Formatting Inputs and Query
+    #search_artist = search_artist.replace(' ','%20')
+    #search_track = search_track.replace(' ','%20')
+    query = f"artist:'{search_artist}' track:'{search_track}'"
     print(f'SEARCH_SPOTIPY: {query=}') #DEBUG
 
     #Search Spotipy
