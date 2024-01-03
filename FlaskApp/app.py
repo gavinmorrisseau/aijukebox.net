@@ -19,8 +19,8 @@ def search_spotify(search_artist,search_track):
     print(f'SEARCH_SPOTIFY: Running "{search_artist}" and "{search_track}"') #DEBUG
 
     # #Formatting Inputs and Query
-    #search_artist = search_artist.replace(' ','%20')
-    #search_track = search_track.replace(' ','%20')
+    search_artist = search_artist.replace("'","")
+    search_track = search_track.replace("'","")
     query = f"artist:'{search_artist}' track:'{search_track}'"
     print(f'SEARCH_SPOTIPY: {query=}') #DEBUG
 
@@ -29,12 +29,16 @@ def search_spotify(search_artist,search_track):
         tracks = sp.search(q=query, limit=1, offset=0)['tracks']
         track_items = tracks['items'][0]
         track_id = track_items['id']
+        track_uri = track_items['uri']
     except IndexError:
+        print("SEARCH_SPOTIFY: Track not found!")
         print('SEARCH_SPOTIFY: ')
         track_id = ''
+        track_uri = ''
 
-    print('query: ' + query)
-    print('track_uri: ' + track_id)
+    print(f'{track_id=}')
+    print(f'{track_uri=}')
+
     return track_id
 
 # OpenAI API Setup
