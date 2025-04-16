@@ -1,11 +1,13 @@
 # aijukebox.net
 > Music recommendation full-stack project with Spotify and OpenAI API
 
-# Usage (not yet available!)
+<img src="FlaskApp/static/assets/images/preview.png" alt="website preview" width="600"/>
+
+# Usage
 1. Fork this repository
 2. Create a new branch
 3. Open terminal and navigate to your clones folder
-4. Add dependencies with using requirements.txt (soon)
+4. Add dependencies from requirements.txt using ```pip install -r requirements.txt```
 5. ```cd aijukebox.net/FlaskApp```
 6. ```python app.py```
 7. Server should start on port 5001
