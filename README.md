@@ -1,7 +1,7 @@
 # aijukebox.net
 > Music recommendation full-stack project with Spotify and OpenAI API
 
-<img src="FlaskApp/static/assets/images/preview.png" alt="website preview" width="600"/>
+<img src="FlaskApp/static/assets/images/preview.png" alt="website preview" width="800"/>
 
 # Usage
 1. Fork this repository
@@ -12,8 +12,9 @@
 6. ```python app.py```
 7. Server should start on port 5001
 8. Open webpage in browser (Usually http://127.0.0.1:5001)
-9. Find (and soon listen) to new music!
-10. (Optional) Help out the project by contributing to the repository :^)
+9. Upon search, you may be required to log into Spotify and copy the localhost URL into console.
+10. Find (and soon listen) to new music!
+11. (Optional) Help out the project by contributing to the repository :^)
 
 # To-Do
 - Move to asynchronous request model
